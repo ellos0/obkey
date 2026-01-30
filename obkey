@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+import os
+
+def needs_print(line):
+    return ("<keybind" in line) or ("<mousebind" in line)
+
+def main():
+    os.chdir(os.getenv("HOME"))
+    os.chdir(".config/openbox")
+    with open("rc.xml", "r") as file:
+        for line in file:
+            if needs_print(line):
+                print(line.strip())
+
+main()
